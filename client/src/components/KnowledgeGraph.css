@@ -1,0 +1,87 @@
+.knowledge-graph-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.knowledge-graph-container.empty {
+  min-height: 200px;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  text-align: center;
+  font-style: italic;
+}
+
+.panel-title {
+  font-size: 1rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.graph-svg-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.node-circle {
+  transition: fill 0.3s ease, filter 0.3s ease;
+}
+
+.node-query {
+  fill: var(--accent-gold);
+  filter: drop-shadow(0 0 8px rgba(212, 168, 67, 0.4));
+}
+
+.node-primary {
+  fill: var(--bg-secondary);
+  stroke: var(--success);
+  stroke-width: 2px;
+}
+
+.node-secondary {
+  fill: var(--bg-primary);
+  stroke: var(--text-muted);
+  stroke-width: 1px;
+}
+
+.node-circle.hovered {
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+}
+.light-theme .node-circle.hovered {
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
+}
+
+.node-text {
+  fill: var(--text-primary);
+  font-size: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  pointer-events: none;
+}
+
+.node-query + .node-text {
+  fill: var(--bg-primary);
+  font-weight: bold;
+}
+
+.graph-tooltip {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--bg-card);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--bg-card-border);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  max-width: 150px;
+  text-align: right;
+  z-index: 10;
+  pointer-events: none;
+}

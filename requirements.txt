@@ -1,0 +1,12 @@
+numpy
+faiss-cpu
+sentence-transformers<4
+transformers<4.46
+torch==2.2.2
+rank_bm25
+pymupdf
+tqdm
+langchain
+langchain-openai
+openai
+python-dotenv

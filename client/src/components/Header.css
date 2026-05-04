@@ -1,0 +1,185 @@
+/* Uses the same CSS variables you already set in App.css:
+   --surface, --surface-2, --text, --muted, --border, --border-2, --shadow-1/2, etc.
+*/
+
+.header {
+  width: 100%;
+  border-bottom: 1px solid var(--border);
+}
+
+.header__inner {
+  max-width: min(var(--container-max, 1180px), 100%);
+  margin: 0 auto;
+  padding: 14px 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+/* Subtle “glass” that does not look flashy */
+.glass {
+  background: color-mix(in srgb, var(--bg, #f6f7fb) 82%, transparent);
+  backdrop-filter: blur(10px) saturate(140%);
+}
+
+/* If your browser doesn’t support color-mix */
+@supports not (background: color-mix(in srgb, white 50%, transparent)) {
+  .glass {
+    background: rgba(255, 255, 255, 0.78);
+  }
+  body.dark-theme .glass {
+    background: rgba(11, 16, 32, 0.70);
+  }
+}
+
+/* Left */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.sidebar-toggle-btn {
+  height: 36px;
+  width: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, transform 120ms ease;
+}
+
+.sidebar-toggle-btn:hover {
+  border-color: var(--border-2);
+  background: var(--surface-2);
+}
+
+.sidebar-toggle-btn:active {
+  transform: translateY(1px);
+}
+
+/* Brand */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.brand__mark {
+  height: 36px;
+  width: 36px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--accent-soft, rgba(47, 92, 255, 0.10));
+  color: var(--accent, #2f5cff);
+  border: 1px solid color-mix(in srgb, var(--accent, #2f5cff) 18%, transparent);
+}
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.brand__title {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.brand__tagline {
+  font-size: 12px;
+  line-height: 1.2;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Right */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.metrics-badges {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 7px 10px;
+  border-radius: 999px;
+
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+
+  box-shadow: var(--shadow-1, 0 1px 2px rgba(16, 24, 40, 0.06));
+}
+
+.badge svg {
+  color: var(--muted);
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  font-size: 12px;
+  color: var(--text);
+  opacity: 0.88;
+}
+
+/* Dark mode tuning (keeps contrast and avoids “milky” pills) */
+body.dark-theme .sidebar-toggle-btn,
+body.dark-theme .badge {
+  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+}
+
+body.dark-theme .brand__mark {
+  border-color: rgba(122, 162, 255, 0.20);
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+  .metrics-badges .badge:nth-child(2),
+  .metrics-badges .badge:nth-child(3) {
+    display: none; /* keep it clean on smaller widths */
+  }
+}
+
+@media (max-width: 520px) {
+  .header__inner {
+    padding: 12px 14px;
+  }
+  .brand__tagline {
+    display: none;
+  }
+}

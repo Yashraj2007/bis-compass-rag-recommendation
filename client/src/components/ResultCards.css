@@ -1,0 +1,15 @@
+.results-container{
+    width: 100%;
+  }
+  
+  .results-list{
+    display: grid;
+    gap: 14px;
+  }
+  
+  /* slightly tighter on mobile */
+  @media (max-width: 520px){
+    .results-list{
+      gap: 12px;
+    }
+  }
